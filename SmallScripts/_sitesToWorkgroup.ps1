@@ -1,7 +1,5 @@
-Set-ExecutionPolicy unrestricted
 # remove initial policy prompt
-# note: this doesn't always work for some reason, trying it again
-Set-ExecutionPolicy unrestricted
+Set-ExecutionPolicy unrestricted CurrentUser
 
 # ping gadoe
 $isInternetConnected = Test-Connection -Quiet "www.gadoe.org";
@@ -14,7 +12,14 @@ if ($isInternetConnected){
     $cred = New-Object System.Management.Automation.PsCredential("sites\tech", (ConvertTo-SecureString "1234567" -AsPlainText -Force))
 
     # drop to workgroup, prompt to reboot
-    Remove-Computer -UnjoinDomaincredential $cred -Confirm:$false -Force -Restart
+    Remove-Computer -UnjoinDomaincredential $cred -Confirm:$false -Force
+
+    # restart computer
+    Write-Host "Press any key to reboot. . ."
+    $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+    Set-ExecutionPolicy restricted CurrentUser
+    Set-ExecutionPolicy restricted
+    Restart-Computer
 }
 else {
 
@@ -25,6 +30,8 @@ else {
         # exit here
         Write-Host "Press any key to exit . . ."
         $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+	    Set-ExecutionPolicy restricted CurrentUser
+	    Set-ExecutionPolicy restricted
         Exit
     }
 
@@ -35,6 +42,8 @@ else {
         # exit here
         Write-Host "Press any key to exit . . ."
         $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+	    Set-ExecutionPolicy restricted CurrentUser
+	    Set-ExecutionPolicy restricted
         Exit
     }
 
@@ -45,6 +54,10 @@ else {
         # exit here
         Write-Host "Press any key to exit . . ."
         $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+	    Set-ExecutionPolicy restricted CurrentUser
+	    Set-ExecutionPolicy restricted
         Exit
     }
 }
+Set-ExecutionPolicy restricted CurrentUser
+Set-ExecutionPolicy restricted

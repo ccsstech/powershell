@@ -1,11 +1,11 @@
-﻿Set-ExecutionPolicy unrestricted
-# remove initial policy prompt
-# note: this doesn't always work for some reason, trying it again
-Set-ExecutionPolicy unrestricted
+﻿# remove initial policy prompt
+Set-ExecutionPolicy unrestricted CurrentUser
 
 # copy bat and xml files to root
+xcopy "E:\_Scripts\Misc\tech.bat" C:\
 xcopy "E:\_Scripts\Misc\ccsd.xml" C:\
 xcopy "E:\_Scripts\Misc\ccsd.bat" C:\
+xcopy "D:\_Scripts\Misc\tech.bat" C:\
 xcopy "D:\_Scripts\Misc\ccsd.xml" C:\
 xcopy "D:\_Scripts\Misc\ccsd.bat" C:\
 
@@ -21,8 +21,8 @@ if ($isInternetConnected){
 else {
     # If wireless adapter
     if (Get-NetAdapter -Name "Wi-Fi"){
-        Start-Process C:\ccsd.bat -Wait
-        
+        Start-Process C:\ccsd.bat
+
         # ping gadoe
         $isInternetConnected = Test-Connection -Quiet "www.gadoe.org";
 
@@ -36,6 +36,8 @@ else {
             # exit here
             Write-Host "Press any key to exit . . ."
             $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+	    Set-ExecutionPolicy restricted CurrentUser
+	    Set-ExecutionPolicy restricted
             Exit
         }
     }
@@ -47,6 +49,8 @@ else {
         # exit here
         Write-Host "Press any key to exit . . ."
         $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+	Set-ExecutionPolicy restricted CurrentUser
+	Set-ExecutionPolicy restricted
         Exit
     }
 
@@ -57,6 +61,8 @@ else {
         # exit here
         Write-Host "Press any key to exit . . ."
         $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+	Set-ExecutionPolicy restricted CurrentUser
+	Set-ExecutionPolicy restricted
         Exit
     }
 }
@@ -64,3 +70,6 @@ else {
 # clean up files
 Remove-Item -path C:\ccsd.bat
 Remove-Item -path C:\ccsd.xml
+Remove-Item -path C:\tech.bat
+Set-ExecutionPolicy restricted CurrentUser
+Set-ExecutionPolicy restricted

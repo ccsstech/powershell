@@ -1,7 +1,5 @@
-﻿Set-ExecutionPolicy unrestricted
-# remove initial policy prompt
-# note: this doesn't always work for some reason, trying it again
-Set-ExecutionPolicy unrestricted
+﻿# remove initial policy prompt
+Set-ExecutionPolicy unrestricted CurrentUser
 
 # ping gadoe
 $isInternetConnected = Test-Connection -Quiet "www.gadoe.org";
@@ -27,6 +25,8 @@ if ($isInternetConnected){
         # restart computer
         Write-Host "Press any key to reboot. . ."
         $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+	    Set-ExecutionPolicy restricted CurrentUser
+	    Set-ExecutionPolicy restricted
         Restart-Computer
     }
     Catch{
@@ -36,6 +36,8 @@ if ($isInternetConnected){
         # exit here
         Write-Host "Press any key to exit . . ."
         $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+	Set-ExecutionPolicy restricted CurrentUser
+	Set-ExecutionPolicy restricted
         Exit
     }
 }
@@ -48,6 +50,8 @@ else {
         # exit here
         Write-Host "Press any key to exit . . ."
         $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+	Set-ExecutionPolicy restricted CurrentUser
+	Set-ExecutionPolicy restricted
         Exit
     }
 
@@ -58,6 +62,8 @@ else {
         # exit here
         Write-Host "Press any key to exit . . ."
         $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+	    Set-ExecutionPolicy restricted CurrentUser
+	    Set-ExecutionPolicy restricted
         Exit
     }
 
@@ -68,6 +74,10 @@ else {
         # exit here
         Write-Host "Press any key to exit . . ."
         $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+	    Set-ExecutionPolicy restricted CurrentUser
+	    Set-ExecutionPolicy restricted
         Exit
     }
 }
+Set-ExecutionPolicy restricted CurrentUser
+Set-ExecutionPolicy restricted

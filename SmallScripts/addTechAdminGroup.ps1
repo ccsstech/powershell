@@ -1,7 +1,5 @@
-﻿Set-ExecutionPolicy unrestricted
-# remove initial policy prompt
-# note: this doesn't always work for some reason, trying it again
-Set-ExecutionPolicy unrestricted
+﻿# remove initial policy prompt
+Set-ExecutionPolicy unrestricted CurrentUser
 
 # copy bat and xml files to root
 xcopy "E:\_Scripts\Misc\tech.bat" C:\
@@ -20,13 +18,13 @@ if ($isInternetConnected){
     # add ccboetech to admin
     Start-Process C:\tech.bat
     Write-Host "The TECH-DEPT group has been added to the local administrators group."
+    Write-Host "Press any key to continue. . ."
+    $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
     # clean up files
     Remove-Item -Path C:\tech.bat
-    
-    # exit here
-    Write-Host "Press any key to exit . . ."
-    $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+    Set-ExecutionPolicy restricted CurrentUser
+    Set-ExecutionPolicy restricted
     Exit
 }
 else {
@@ -38,6 +36,8 @@ else {
         # exit here
         Write-Host "Press any key to exit . . ."
         $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+	    Set-ExecutionPolicy restricted CurrentUser
+	    Set-ExecutionPolicy restricted
         Exit
     }
 
@@ -48,6 +48,8 @@ else {
         # exit here
         Write-Host "Press any key to exit . . ."
         $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+	    Set-ExecutionPolicy restricted CurrentUser
+	    Set-ExecutionPolicy restricted
         Exit
     }
 
@@ -58,6 +60,10 @@ else {
         # exit here
         Write-Host "Press any key to exit . . ."
         $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+	    Set-ExecutionPolicy restricted CurrentUser
+	    Set-ExecutionPolicy restricted
         Exit
     }
 }
+Set-ExecutionPolicy restricted CurrentUser
+Set-ExecutionPolicy restricted

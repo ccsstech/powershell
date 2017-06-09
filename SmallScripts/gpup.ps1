@@ -1,7 +1,5 @@
-﻿Set-ExecutionPolicy unrestricted
-# remove initial policy prompt
-# note: this doesn't always work for some reason, trying it again
-Set-ExecutionPolicy unrestricted
+﻿# remove initial policy prompt
+Set-ExecutionPolicy unrestricted CurrentUser
 
 # copy bat and xml files to root
 xcopy "E:\_Scripts\Misc\gpup.bat" C:\
@@ -13,7 +11,7 @@ Start-Process C:\gpup.bat -Wait
 # clean up
 Remove-Item -Path C:\gpup.bat
 
-# exit here
-Write-Host "Press any key to exit . . ."
-$x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+# exit
+Set-ExecutionPolicy restricted CurrentUser
+Set-ExecutionPolicy restricted
 Exit
