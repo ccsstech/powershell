@@ -16,8 +16,6 @@ Remove-Item -Path C:\gpup.ps1
 Remove-Item -Path C:\addTechAdminGroup.ps1
 
 # exit here
-Write-Host "Press any key to exit . . ."
-$x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 Set-ExecutionPolicy restricted CurrentUser
 Set-ExecutionPolicy restricted
 Exit
