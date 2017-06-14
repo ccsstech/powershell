@@ -34,13 +34,13 @@ New-Item -Path HKCU:\Software\Microsoft\Windows\CurrentVersion -Name RunOnce -Fo
 
 # change RunOnce registry key
 Set-Location HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce
-New-ItemProperty . MyKey -propertytype String -value "Powershell C:\joinCCBOE.ps1"
+New-ItemProperty . MyKey -propertytype String -value "Powershell C:\addTechAdminGroup.ps1"
 
 # setup network
 Invoke-Expression C:\connectToInternet.ps1
 
 # rename
-Invoke-Expression C:\rename.ps1
+Invoke-Expression C:\joinCCBOE.ps1
 
 # exit here
 Restart-Computer
