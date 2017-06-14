@@ -17,7 +17,8 @@ if ($isInternetConnected){
     # restart computer
     Set-ExecutionPolicy restricted CurrentUser
     Set-ExecutionPolicy restricted
-    Restart-Computer
+    #Restart-Computer
+    Pause
 }
 else {
 
