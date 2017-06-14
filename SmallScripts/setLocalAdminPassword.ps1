@@ -7,4 +7,4 @@ Set-ExecutionPolicy unrestricted CurrentUser
 # exit here
 Set-ExecutionPolicy restricted CurrentUser
 Set-ExecutionPolicy restricted
-Restart-Computer
+Exit
