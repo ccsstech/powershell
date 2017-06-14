@@ -1,6 +1,7 @@
 ﻿Remove-Item -path C:\ccsd.bat
 Remove-Item -path C:\ccsd.xml
 Remove-Item -path C:\tech.bat
+Remove-Item -path C:\gpup.bat
 Remove-Item -path C:\addTechAdminGroup.ps1
 Remove-Item -path C:\rename.ps1
 Remove-Item -path C:\connectToInternet.ps1
